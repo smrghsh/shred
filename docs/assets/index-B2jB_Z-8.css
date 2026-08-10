@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow: hidden;
+  background: #0b1420;
+  font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+#hud {
+  position: fixed;
+  top: 14px;
+  left: 16px;
+  color: #eaf2fb;
+  text-shadow: 0 1px 6px rgba(8, 20, 34, 0.7);
+  pointer-events: none;
+  max-width: 420px;
+}
+
+#hud .title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+#hud .hint {
+  margin-top: 4px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #eaf2fb;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  background: #0b1420;
+}
