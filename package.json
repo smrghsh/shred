@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "lil-gui": "^0.17.0",
-    "three": "^0.185.1"
+    "three": "github:mrdoob/three.js#dev"
   },
   "devDependencies": {
     "@rollup/pluginutils": "^5.4.0",
