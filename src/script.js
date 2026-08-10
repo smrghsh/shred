@@ -1,5 +1,4 @@
 import "./style.css";
-import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
 import Experience from "./Experience/Experience.js";
 import SnowSim from "./snow/SnowSim.js";
 
@@ -9,6 +8,98 @@ function setLoading(message, isError = false) {
   loading.style.display = "grid";
   loading.textContent = message;
   if (isError) loading.style.color = "#ff9b8a";
+}
+
+// Error overlay you can actually read (and dismiss) inside the headset —
+// there is no console on the Vision Pro.
+function showError(message) {
+  setLoading(`${message}\n\n(tap to dismiss)`, true);
+  loading.style.whiteSpace = "pre-wrap";
+  loading.style.padding = "0 32px";
+  loading.style.cursor = "pointer";
+  loading.onclick = () => (loading.style.display = "none");
+}
+
+// Hand-rolled stand-in for three's VRButton. Same look, one difference that
+// matters: three's button calls requestSession without a .catch, so when
+// Safari rejects the required "webgpu" session feature (anything older than
+// visionOS 26.2, or the feature flag switched off) the tap does nothing at
+// all. This one puts the rejection on screen.
+function createEnterVRButton(renderer) {
+  const button = document.createElement("button");
+  button.id = "VRButton";
+  Object.assign(button.style, {
+    position: "absolute",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "12px 24px",
+    border: "1px solid #fff",
+    borderRadius: "4px",
+    background: "rgba(0,0,0,0.1)",
+    color: "#fff",
+    font: "normal 13px sans-serif",
+    textAlign: "center",
+    opacity: "0.5",
+    outline: "none",
+    zIndex: "999",
+    cursor: "pointer",
+  });
+  button.onmouseenter = () => (button.style.opacity = "1.0");
+  button.onmouseleave = () => (button.style.opacity = "0.5");
+
+  if (!("xr" in navigator)) {
+    button.textContent = "WEBXR NOT AVAILABLE";
+    button.disabled = true;
+    return button;
+  }
+
+  navigator.xr
+    .isSessionSupported("immersive-vr")
+    .then((supported) => {
+      if (!supported) {
+        button.textContent = "VR NOT SUPPORTED";
+        button.disabled = true;
+        return;
+      }
+      button.textContent = "ENTER VR";
+      let session = null;
+      button.onclick = async () => {
+        if (session) {
+          session.end();
+          return;
+        }
+        button.textContent = "STARTING…";
+        try {
+          session = await navigator.xr.requestSession("immersive-vr", {
+            requiredFeatures: ["webgpu"],
+            optionalFeatures: ["hand-tracking", "local-floor"],
+          });
+          session.addEventListener("end", () => {
+            session = null;
+            button.textContent = "ENTER VR";
+          });
+          await renderer.xr.setSession(session);
+          button.textContent = "EXIT VR";
+        } catch (err) {
+          console.error("XR session failed:", err);
+          session = null;
+          button.textContent = "ENTER VR";
+          const s = `${err?.name || "Error"}: ${err?.message || err}`;
+          const hint = /webgpu|feature|notsupported/i.test(s)
+            ? "\n\nThis app renders XR through WebGPU, which needs visionOS 26.2+ Safari. If the OS is current, check Settings → Apps → Safari → Advanced → Feature Flags → WebXR (the WebGPU binding must be on)."
+            : "";
+          showError(`Enter VR failed — ${s}${hint}`);
+        }
+      };
+    })
+    .catch((err) => {
+      button.textContent = "VR NOT SUPPORTED";
+      button.disabled = true;
+      showError(`isSessionSupported failed — ${err?.message || err}`);
+    });
+
+  return button;
 }
 
 async function main() {
@@ -43,12 +134,7 @@ async function main() {
   // Safari 26.2) — required, not optional, so browsers without it fail to
   // start the session instead of coming up blank. hand-tracking is what the
   // summon gesture reads; visionOS prompts for permission.
-  document.body.appendChild(
-    VRButton.createButton(experience.renderer.instance, {
-      requiredFeatures: ["webgpu"],
-      optionalFeatures: ["hand-tracking", "local-floor"],
-    })
-  );
+  document.body.appendChild(createEnterVRButton(experience.renderer.instance));
 
   loading.style.display = "none";
 }
