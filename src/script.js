@@ -11,7 +11,14 @@ function setLoading(message, isError = false) {
 }
 
 // Error overlay you can actually read (and dismiss) inside the headset —
-// there is no console on the Vision Pro.
+// there is no console on the Vision Pro. Errors thrown while immersive are
+// invisible (the DOM isn't rendered); they stay in the overlay so they're
+// waiting on screen after the session ends.
+window.addEventListener("error", (e) => showError(`Error: ${e.message}`));
+window.addEventListener("unhandledrejection", (e) =>
+  showError(`Unhandled rejection: ${e.reason?.message || e.reason}`)
+);
+
 function showError(message) {
   setLoading(`${message}\n\n(tap to dismiss)`, true);
   loading.style.whiteSpace = "pre-wrap";
@@ -110,9 +117,16 @@ async function main() {
       "WebGPU is not available in this browser. Use recent Chrome/Edge, or Safari on visionOS 26."
     );
   }
+  // xrCompatible matters: the device is shared with three's renderer, and
+  // XRGPUBinding refuses a device whose adapter wasn't requested as
+  // XR-compatible — the session then starts (browser fades) but no frames
+  // are ever submitted. three does this itself when it owns the device;
+  // handing it ours means doing it here.
   const adapter =
-    (await navigator.gpu.requestAdapter({ powerPreference: "high-performance" })) ||
-    (await navigator.gpu.requestAdapter());
+    (await navigator.gpu.requestAdapter({
+      powerPreference: "high-performance",
+      xrCompatible: true,
+    })) || (await navigator.gpu.requestAdapter({ xrCompatible: true }));
   if (!adapter) throw new Error("WebGPU is available but no GPU adapter was found.");
   // core-features-and-limits just tells three's WebGPU backend it is not
   // running in compatibility mode.
@@ -122,6 +136,7 @@ async function main() {
   const device = await adapter.requestDevice({ requiredFeatures });
   device.addEventListener("uncapturederror", (e) => {
     console.error("WebGPU uncaptured error:", e.error?.message || e.error);
+    showError(`WebGPU error: ${e.error?.message || e.error}`);
   });
 
   const sim = new SnowSim(device);
