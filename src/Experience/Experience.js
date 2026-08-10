@@ -76,6 +76,12 @@ export default class Experience extends EventEmitter {
     this.device = device;
     this.sim = sim;
 
+    // Known before the renderer exists so it can pick per-platform options
+    // (no MSAA where an XR session may attach).
+    this.xrSupported =
+      "xr" in navigator &&
+      (await navigator.xr.isSessionSupported("immersive-vr").catch(() => false));
+
     this.renderer = new Renderer(device);
     await this.renderer.init();
 

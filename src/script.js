@@ -12,17 +12,38 @@ function setLoading(message, isError = false) {
 
 // Error overlay you can actually read (and dismiss) inside the headset —
 // there is no console on the Vision Pro. Errors thrown while immersive are
-// invisible (the DOM isn't rendered); they stay in the overlay so they're
-// waiting on screen after the session ends.
-window.addEventListener("error", (e) => showError(`Error: ${e.message}`));
+// invisible (the DOM isn't rendered); they accumulate here so the whole
+// sequence is waiting on screen after the session ends. The FIRST error is
+// usually the informative one — everything after tends to be cascade.
+const errorLog = [];
+let lastLine = "";
+let repeats = 0;
+
+function appendError(line) {
+  if (line === lastLine) {
+    repeats++;
+    errorLog[errorLog.length - 1] = `${line}  (x${repeats + 1})`;
+  } else {
+    lastLine = line;
+    repeats = 0;
+    if (errorLog.length < 14) errorLog.push(line);
+    else if (errorLog.length === 14) errorLog.push("… (further errors dropped)");
+  }
+  showError(errorLog.join("\n"));
+}
+window.shredLog = appendError; // diagnostics hook for other modules
+
+window.addEventListener("error", (e) => appendError(`Error: ${e.message}`));
 window.addEventListener("unhandledrejection", (e) =>
-  showError(`Unhandled rejection: ${e.reason?.message || e.reason}`)
+  appendError(`Unhandled rejection: ${e.reason?.message || e.reason}`)
 );
 
 function showError(message) {
   setLoading(`${message}\n\n(tap to dismiss)`, true);
   loading.style.whiteSpace = "pre-wrap";
   loading.style.padding = "0 32px";
+  loading.style.fontSize = "13px";
+  loading.style.textAlign = "left";
   loading.style.cursor = "pointer";
   loading.onclick = () => (loading.style.display = "none");
 }
@@ -136,7 +157,7 @@ async function main() {
   const device = await adapter.requestDevice({ requiredFeatures });
   device.addEventListener("uncapturederror", (e) => {
     console.error("WebGPU uncaptured error:", e.error?.message || e.error);
-    showError(`WebGPU error: ${e.error?.message || e.error}`);
+    appendError(`WebGPU: ${e.error?.message || e.error}`);
   });
 
   const sim = new SnowSim(device);

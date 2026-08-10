@@ -14,10 +14,13 @@ export default class Renderer {
     this.scene = this.experience.scene;
     this.camera = this.experience.camera;
 
+    // No MSAA on XR-capable devices: three's MSAA-for-WebXR-WebGPU path is
+    // brand new (r186dev, Aug 2026) and unproven on visionOS; desktop keeps
+    // antialiasing. Detection is async, so Experience.init passes it in.
     this.instance = new WebGPURenderer({
       canvas: this.canvas,
       device, // share the sim's GPUDevice
-      antialias: true,
+      antialias: !this.experience.xrSupported,
     });
     this.instance.setSize(this.sizes.width, this.sizes.height);
     this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2));
@@ -43,10 +46,24 @@ export default class Renderer {
     // WebGPU XR path tracks sub-image dimensions itself.
     const xr = this.instance.xr;
     const getViewData = xr._getWebGPUViewData.bind(xr);
+    let loggedXR = false;
     xr._getWebGPUViewData = (views) => {
       const viewData = getViewData(views);
       const tex = viewData.colorTexture;
       const rt = xr._xrRenderTarget;
+      if (!loggedXR && tex && rt) {
+        // one-shot geometry dump into the on-page error log — the ground
+        // truth for diagnosing XR attachment mismatches on device
+        loggedXR = true;
+        const vp = viewData.viewports[0];
+        window.shredLog?.(
+          `[xr] layer ${xr._glProjLayer?.textureWidth}x${xr._glProjLayer?.textureHeight}` +
+            ` subimage ${tex.width}x${tex.height}x${tex.depthOrArrayLayers} ${tex.format}` +
+            ` views ${views.length} descs ${viewData.viewDescriptors.length}` +
+            ` vp ${vp?.x},${vp?.y} ${vp?.width}x${vp?.height}` +
+            ` rt ${rt.width}x${rt.height}x${rt.depth} samples ${this.instance.samples}`
+        );
+      }
       if (
         tex &&
         rt &&
