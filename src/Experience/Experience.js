@@ -9,6 +9,8 @@ import MouseCarve from "../interaction/MouseCarve.js";
 import SkyLut from "../sky/SkyLut.js";
 import sources from "./sources.js";
 import { MAX_BRUSHES } from "../snow/SnowSim.js";
+import { GIANT_SCALE, RIG_XZ } from "./World/constants.js";
+import { terrainSurfaceY } from "../terrain/terrainSurface.js";
 
 let instance = null;
 
@@ -47,17 +49,16 @@ export default class Experience extends EventEmitter {
     this.scene.add(this.cameraGroup);
 
     this.camera = new Camera();
-    // Desktop framing: head height at the downhill edge of the field,
-    // looking up the slope — carve field in the lower half, the drift band
-    // and climbing flank above it, crest and sky at the top (brahma's
-    // default is a generic close-up). The 35-degree FOV can't hold both
-    // the field at your feet and the ~27-degree crest, so the field's
-    // downhill half is deliberately cropped.
-    this.camera.instance.position.set(0.3, 1.9, 6.5);
+    // Desktop framing: hovering above the mountainside at the giant's
+    // vantage — the carve field on the flank below, the crest above.
+    // (Heights computed from the shared terrain function at init, since
+    // the field sits partway up the flank now.)
+    this.camera.instance.far = 5000;
+    this.camera.instance.position.set(8, 75, -55);
     this.camera.instance.updateProjectionMatrix();
-    this.camera.controls.target.set(0, 3.3, -1.5);
+    this.camera.controls.target.set(0, 48, -140);
     this.camera.controls.maxPolarAngle = Math.PI * 0.49;
-    this.camera.controls.maxDistance = 30;
+    this.camera.controls.maxDistance = 400;
     // The left button belongs to carving (MouseCarve) — orbit with the
     // right button, zoom with the wheel. No enabled-toggling handshake.
     this.camera.controls.mouseButtons = {
@@ -70,6 +71,11 @@ export default class Experience extends EventEmitter {
     // Emitters (Hands, MouseCarve) push brush stamps here; the sim drains
     // the queue once per frame.
     this.brushQueue = [];
+
+    // Physical-to-world scale of the player: 1 on desktop, GIANT_SCALE in
+    // the headset (the camera rig is scaled up and stood on the flank).
+    // Interaction thresholds and particle physics read this every frame.
+    this.worldScale = 1;
   }
 
   async init({ device, sim }) {
@@ -102,8 +108,40 @@ export default class Experience extends EventEmitter {
     this.world.update(0);
     this.renderer.update();
 
+    // Compile the XR-target pipeline variants now, not mid-session.
+    if (this.xrSupported) {
+      this.renderer.manualXR.warmup(this.scene, this.camera.instance);
+    }
+
     this.hands = new Hands();
     this.mouseCarve = new MouseCarve();
+
+    // --- the giant: scale and place the rig when an XR session starts ---
+    // The rig stands partway up the flank; at 60x, the carve field uphill
+    // sits a physical arm's reach below the hands and the summit crest
+    // looms a few physical metres ahead.
+    const xr = this.renderer.instance.xr;
+    xr.addEventListener("sessionstart", () => {
+      this.worldScale = GIANT_SCALE;
+      this.cameraGroup.position.set(
+        RIG_XZ.x,
+        terrainSurfaceY(RIG_XZ.x, RIG_XZ.z),
+        RIG_XZ.z
+      );
+      this.cameraGroup.scale.setScalar(GIANT_SCALE);
+      // near/far in world units: 2 m world is ~3 physical centimetres
+      this.camera.instance.near = 2;
+      this.camera.instance.far = 20000;
+      this.camera.instance.updateProjectionMatrix();
+    });
+    xr.addEventListener("sessionend", () => {
+      this.worldScale = 1;
+      this.cameraGroup.position.set(0, 0, 0);
+      this.cameraGroup.scale.setScalar(1);
+      this.camera.instance.near = 0.1;
+      this.camera.instance.far = 5000;
+      this.camera.instance.updateProjectionMatrix();
+    });
 
     this.sizes.on("resize", () => {
       this.camera.resize();

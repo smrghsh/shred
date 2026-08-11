@@ -1,13 +1,18 @@
 import * as THREE from "three";
 import Experience from "../Experience/Experience.js";
 import carveBrushes from "./carveBrushes.js";
-import { SNOW_Y, SLOPE_GRADE, surfaceY } from "../Experience/World/constants.js";
+import { FIELD_CENTER, FIELD_LIFT } from "../Experience/World/constants.js";
 import { FIELD_SIZE } from "../snow/SnowSim.js";
+import { terrainSurfaceY, terrainSurfaceNormal } from "../terrain/terrainSurface.js";
 
 // Desktop fallback so the carve loop is testable without a headset: a
 // left-drag that starts on the snowfield carves (the board appears and
 // follows the cursor); drags that start off the field orbit as usual.
 // Turning sharply while dragging leans the virtual board into the turn.
+//
+// The field is real terrain now, not a plane — the raycast uses the
+// tangent plane at the field center, which is exact there and drifts by at
+// most the local relief toward the edges: plenty for a desktop fallback.
 
 export default class MouseCarve {
   constructor() {
@@ -17,12 +22,18 @@ export default class MouseCarve {
     this.sizes = this.experience.sizes;
 
     this.raycaster = new THREE.Raycaster();
-    // the base slope is an exact plane over the carve field, so the drag
-    // raycast can stay an analytic plane intersection
-    this.plane = new THREE.Plane().setFromNormalAndCoplanarPoint(
-      new THREE.Vector3(0, 1, SLOPE_GRADE).normalize(),
-      new THREE.Vector3(0, SNOW_Y, 0)
+    const center = new THREE.Vector3(
+      FIELD_CENTER.x,
+      terrainSurfaceY(FIELD_CENTER.x, FIELD_CENTER.z) + FIELD_LIFT,
+      FIELD_CENTER.z
     );
+    const normal = terrainSurfaceNormal(
+      FIELD_CENTER.x,
+      FIELD_CENTER.z,
+      new THREE.Vector3(),
+      FIELD_SIZE / 4 // wide stencil: the plane should fit the flank, not one drift
+    );
+    this.plane = new THREE.Plane().setFromNormalAndCoplanarPoint(normal, center);
     this.ndc = new THREE.Vector2();
     this.hit = new THREE.Vector3();
     this.lastHit = new THREE.Vector3();
@@ -48,7 +59,8 @@ export default class MouseCarve {
 
   _inField() {
     return (
-      Math.abs(this.hit.x) < FIELD_SIZE / 2 && Math.abs(this.hit.z) < FIELD_SIZE / 2
+      Math.abs(this.hit.x - FIELD_CENTER.x) < FIELD_SIZE / 2 &&
+      Math.abs(this.hit.z - FIELD_CENTER.z) < FIELD_SIZE / 2
     );
   }
 
@@ -82,7 +94,7 @@ export default class MouseCarve {
     const dx = x - this.lastHit.x;
     const dz = z - this.lastHit.z;
     const moved = Math.hypot(dx, dz);
-    if (moved < 0.0005) return;
+    if (moved < 0.01) return;
 
     const targetYaw = Math.atan2(-dz, dx);
     // shortest-arc yaw smoothing; the turn rate becomes the carve lean
@@ -100,18 +112,25 @@ export default class MouseCarve {
     board.setPoseFlat(x, z, this.yaw, this.carve); // lean visibly into the turn
 
     this.experience.brushQueue.push(
-      ...carveBrushes({ x, z, yaw: this.yaw, moved, pen: 0.045, carve: this.carve })
+      ...carveBrushes({
+        x: x - FIELD_CENTER.x,
+        z: z - FIELD_CENTER.z,
+        yaw: this.yaw,
+        moved,
+        pen: 0.9,
+        carve: this.carve,
+      })
     );
 
     const speed = moved / Math.max(dt, 1e-3);
-    if (speed > 0.4) {
+    if (speed > 8) {
       this.experience.world.spray.emit(
-        new THREE.Vector3(x, surfaceY(x, z) + 0.02, z),
-        new THREE.Vector3(-dx, 0.25, -dz).multiplyScalar(speed * 0.8),
-        Math.min(6, Math.floor(speed * 4))
+        new THREE.Vector3(x, terrainSurfaceY(x, z) + FIELD_LIFT + 0.4, z),
+        new THREE.Vector3(-dx, 0.25 * 20, -dz).multiplyScalar(speed * 0.04),
+        Math.min(6, Math.floor(speed * 0.2))
       );
     }
 
-    this.lastHit.set(x, surfaceY(x, z), z);
+    this.lastHit.set(x, terrainSurfaceY(x, z), z);
   }
 }

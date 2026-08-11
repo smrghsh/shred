@@ -1,6 +1,9 @@
 import "./style.css";
 import Experience from "./Experience/Experience.js";
 import SnowSim from "./snow/SnowSim.js";
+import { installRemoteLog } from "./devRemoteLog.js";
+
+installRemoteLog(); // no-op outside `vite dev`
 
 const loading = document.getElementById("loading");
 
@@ -26,6 +29,9 @@ function appendError(line) {
   } else {
     lastLine = line;
     repeats = 0;
+    // repeated lines only stream once — a per-frame error would otherwise
+    // flood the remote log at 90 beacons a second
+    if (!line.startsWith("WebGPU:")) console.log(line); // reaches the dev remote log too
     if (errorLog.length < 14) errorLog.push(line);
     else if (errorLog.length === 14) errorLog.push("… (further errors dropped)");
   }
@@ -39,13 +45,20 @@ window.addEventListener("unhandledrejection", (e) =>
 );
 
 function showError(message) {
-  setLoading(`${message}\n\n(tap to dismiss)`, true);
+  setLoading(`${message}\n\n(tap to copy log & dismiss)`, true);
   loading.style.whiteSpace = "pre-wrap";
   loading.style.padding = "0 32px";
   loading.style.fontSize = "13px";
   loading.style.textAlign = "left";
   loading.style.cursor = "pointer";
-  loading.onclick = () => (loading.style.display = "none");
+  loading.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(errorLog.join("\n"));
+    } catch {
+      /* clipboard needs a user gesture + permission; dismiss regardless */
+    }
+    loading.style.display = "none";
+  };
 }
 
 // Hand-rolled stand-in for three's VRButton. Same look, one difference that

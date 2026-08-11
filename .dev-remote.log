@@ -1,0 +1,382 @@
+--- log opened 2026-08-11T00:33:30.888Z ---
+00:33:40.776 smoke test line
+00:36:04.736 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:36:04.797 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:36:43.102 [log] [xr] v0 c 1888x1792x1 bgra8unorm d 1888x1792x1 depth24plus vp 0,0,4338,3478 desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:36:43.102 [log] [xr] v1 c 1888x1792x1 bgra8unorm sameTex:false d 1888x1792x1 depth24plus vp 0,0,4338,3478 desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:36:43.103 [log] [xr] layer 0x0 scale 1.000 rt 0x0x2 samples 0
+00:36:43.302 [error] WebGPU uncaptured error: GPUCommandEncoder.finish: encoder state is 'Locked', expected 'Open'
+00:43:42.519 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:43:42.863 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:44:31.244 [log] [vite] server connection lost. Polling for restart...
+00:44:31.639 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:44:31.750 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:44:34.889 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:44:34.890 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:44:37.923 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:44:37.967 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:44:42.780 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:44:42.781 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:48:52.586 [log] [vite] server connection lost. Polling for restart...
+00:48:52.840 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:48:53.076 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:48:58.335 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:48:58.336 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:50:09.965 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:50:09.993 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:10.280 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:50:10.335 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:19.365 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:50:19.365 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:50:20.149 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:50:20.168 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:20.370 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:50:20.412 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:27.393 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:50:27.413 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:27.817 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:50:27.863 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:33.666 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:50:33.685 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:33.977 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:50:34.028 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:38.616 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:50:38.622 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:50:38.633 [error] WebGPU uncaptured error: 1 error generated while compiling the shader:
+56:28: unresolved identifier 'DSTW'
+00:50:41.472 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:50:41.490 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:41.753 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:50:41.791 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:49.074 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:50:49.095 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:49.257 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:50:49.308 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:52.239 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:50:52.298 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:50:57.083 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:50:57.084 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:51:02.139 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:51:02.160 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:51:02.712 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:51:02.770 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:51:07.623 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:51:07.642 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:51:07.882 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:51:07.884 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:51:15.190 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:51:15.209 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:51:15.414 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:51:15.471 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:51:23.905 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:51:23.906 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:51:29.234 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:51:29.252 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:52:44.659 [log] [vite] server connection lost. Polling for restart...
+00:52:45.009 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:52:45.079 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:52:47.224 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:52:47.277 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:52:52.451 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:52:52.452 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:54:30.385 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:54:30.406 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:54:36.485 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:54:36.504 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:54:36.628 [log] [vite] server connection lost. Polling for restart...
+00:54:37.355 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:54:37.641 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:54:45.808 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:54:45.828 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:54:45.998 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:54:45.999 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:54:46.633 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:54:46.681 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:54:54.423 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:54:54.443 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:54:54.976 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:54:55.072 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:55:03.334 [log] [xr] sessionstart
+00:55:03.643 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:55:03.644 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:55:08.300 [log] [xr] visibility visible-blurred
+00:55:08.543 [log] [xr] sessionend
+00:55:08.543 [log] [xr] session end event
+00:55:19.765 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:55:19.852 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:55:25.914 [log] [xr] sessionstart
+00:55:26.046 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:55:26.047 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:55:30.112 [log] [xr] visibility hidden
+00:55:30.274 [log] [xr] sessionend
+00:55:30.277 [log] [xr] session end event
+00:56:44.894 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:56:44.913 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:56:47.257 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:56:48.385 [log] SkyLut solved: E_up=(0.00, 0.00, 0.00) bounce=(1.00, 0.80, 0.42)
+00:56:51.298 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:56:51.317 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:56:57.225 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:56:57.900 [log] SkyLut solved: E_up=(0.00, 0.00, 0.00) bounce=(1.00, 0.80, 0.42)
+00:56:58.800 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+00:56:58.819 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:57:04.940 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:57:04.942 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:57:53.175 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:57:53.177 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:58:35.190 [log] [xr] sessionstart
+00:58:35.459 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:58:35.460 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:58:35.461 [log] [hb] first xr frame submitted
+00:58:39.312 [log] [xr] visibility visible-blurred
+00:58:39.443 [log] [xr] sessionend
+00:58:39.444 [log] [xr] session end event
+00:58:59.761 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+00:58:59.765 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+00:59:05.191 [log] [xr] sessionstart
+00:59:05.525 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:59:05.525 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+00:59:05.526 [log] [hb] first xr frame submitted
+00:59:09.245 [log] [xr] visibility visible-blurred
+00:59:09.449 [log] [xr] sessionend
+00:59:09.450 [log] [xr] session end event
+01:00:15.722 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:00:15.750 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:00:19.124 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:00:20.201 [log] SkyLut solved: E_up=(0.00, 0.00, 0.00) bounce=(1.00, 0.80, 0.42)
+01:00:25.007 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:00:25.028 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:00:29.068 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:01:22.710 [log] SkyLut solved: E_up=(-0.01, -0.00, 0.01) bounce=(1.00, 0.79, 0.43)
+01:01:23.418 [log] [vite] server connection lost. Polling for restart...
+01:01:24.026 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:01:24.169 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:01:27.235 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:01:27.380 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:01:32.027 [log] [xr] sessionstart
+01:01:32.330 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:01:32.333 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:01:32.333 [log] [hb] tick 1 views 2
+01:01:32.336 [log] [hb] xr frame 1 submitted
+01:01:36.078 [log] [xr] visibility visible-blurred
+01:01:36.315 [log] [xr] sessionend
+01:01:36.315 [log] [xr] session end event
+01:02:49.198 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:02:49.394 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:02:56.779 [log] [xr] sessionstart
+01:02:57.050 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:02:57.050 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:02:57.050 [log] [hb] tick 1 views 2
+01:02:57.050 [log] [hb] xr frame 1 submitted
+01:03:00.933 [log] [xr] visibility visible-blurred
+01:03:01.077 [log] [xr] sessionend
+01:03:01.077 [log] [xr] session end event
+01:05:12.007 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:05:12.029 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:05:32.858 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:05:32.878 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:12:09.304 [log] [vite] server connection lost. Polling for restart...
+01:12:09.873 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:12:10.124 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:12:10.447 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:12:10.650 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:12:15.258 [log] [xr] sessionstart
+01:12:15.547 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:12:15.548 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:12:15.549 [log] [hb] tick 1 views 2
+01:12:15.549 [log] [hb] xr frame 1 submitted
+01:12:20.482 [log] [xr] visibility visible-blurred
+01:12:20.739 [log] [xr] sessionend
+01:12:20.739 [log] [xr] session end event
+01:13:20.348 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:13:20.371 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:14:25.058 [log] [vite] server connection lost. Polling for restart...
+01:14:25.445 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:14:25.482 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:14:28.050 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:14:28.150 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:14:31.333 [log] [xr] sessionstart
+01:14:31.679 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:14:31.680 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:14:31.680 [log] [hb] tick 1 views 2
+01:14:31.681 [log] [hb] xr frame 1 submitted
+01:14:36.223 [log] [xr] visibility visible-blurred
+01:14:36.240 [log] [xr] visibility hidden
+01:14:36.348 [log] [xr] sessionend
+01:14:36.348 [log] [xr] session end event
+01:15:41.837 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:15:41.857 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:16:12.484 [log] [vite] server connection lost. Polling for restart...
+01:16:12.824 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:16:12.847 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:16:14.879 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:16:14.932 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:16:17.241 [log] [xr] sessionstart
+01:16:17.589 [log] [xr] v0 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:16:17.590 [log] [xr] v1 1888x1792 bgra8unorm desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:16:17.590 [log] [hb] tick 1 views 2
+01:16:17.591 [log] [xr] updateRenderState(depthNear,depthFar) — re-asserting layers
+01:16:17.591 [log] [hb] xr frame 1 submitted
+01:16:17.592 [log] [hb] tick 2 views 2
+01:16:17.593 [log] [hb] xr frame 2 submitted
+01:16:17.593 [log] [hb] tick 3 views 2
+01:16:17.593 [log] [hb] xr frame 3 submitted
+01:16:17.723 [log] [hb] tick 10 views 2
+01:16:17.724 [log] [hb] xr frame 10 submitted
+01:16:17.922 [log] [hb] tick 30 views 2
+01:16:17.923 [log] [hb] xr frame 30 submitted
+01:16:18.581 [log] [hb] tick 90 views 2
+01:16:18.581 [log] [hb] xr frame 90 submitted
+01:16:20.572 [log] [hb] xr frames flowing, 89.5 fps
+01:16:21.067 [log] [hb] tick 300 views 2
+01:16:21.068 [log] [hb] xr frame 300 submitted
+01:16:23.601 [log] [hb] xr frames flowing, 89.6 fps
+01:16:26.637 [log] [hb] xr frames flowing, 90.0 fps
+01:16:29.054 [log] [xr] visibility visible-blurred
+01:16:29.059 [log] [xr] sessionend
+01:16:29.060 [log] [xr] session end event
+01:18:17.539 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:18:17.559 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:18:25.740 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:18:25.762 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:18:32.027 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:18:32.045 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:18:57.116 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:18:57.135 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:19:27.292 [log] [vite] server connection lost. Polling for restart...
+01:19:27.965 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:19:27.972 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:19:28.490 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:19:28.491 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:19:31.113 [log] [xr] sessionstart
+01:19:31.114 [log] [xr] fixedFoveation set to 0
+01:19:31.177 [log] [xr] v0 1888x1792 bgra8unorm vp 0,0,4338,3478 desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:19:31.181 [log] [xr] v1 1888x1792 bgra8unorm vp 0,0,4338,3478 desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:19:31.182 [log] [hb] tick 1 views 2
+01:19:31.182 [log] [xr] updateRenderState(depthNear,depthFar) — re-asserting layers
+01:19:31.227 [log] [hb] xr frame 1 submitted
+01:19:31.228 [log] [hb] tick 2 views 2
+01:19:31.229 [log] [hb] xr frame 2 submitted
+01:19:31.229 [log] [hb] tick 3 views 2
+01:19:31.230 [log] [hb] xr frame 3 submitted
+01:19:31.309 [log] [hb] tick 10 views 2
+01:19:31.310 [log] [hb] xr frame 10 submitted
+01:19:31.531 [log] [hb] tick 30 views 2
+01:19:31.532 [log] [hb] xr frame 30 submitted
+01:19:32.202 [log] [hb] tick 90 views 2
+01:19:32.205 [log] [hb] xr frame 90 submitted
+01:19:34.259 [log] [hb] xr frames flowing, 89.4 fps
+01:19:34.589 [log] [hb] tick 300 views 2
+01:19:34.590 [log] [hb] xr frame 300 submitted
+01:19:37.269 [log] [hb] xr frames flowing, 89.7 fps
+01:19:40.357 [log] [xr] visibility visible-blurred
+01:19:40.359 [log] [xr] sessionend
+01:19:40.360 [log] [xr] session end event
+01:21:18.923 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:21:18.943 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:21:24.951 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:21:24.971 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:21:34.502 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:21:34.523 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:21:43.857 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:21:43.876 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:21:48.506 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:21:48.525 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:21:57.809 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:21:57.829 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:23:34.984 [log] [vite] server connection lost. Polling for restart...
+01:23:35.808 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+01:23:35.810 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:23:40.869 [log] [xr] sessionstart
+01:23:40.869 [log] [xr] fixedFoveation set to 0
+01:23:41.249 [log] [xr] v0 1888x1792 bgra8unorm vp 0,0,4338,3478 desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":0,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:23:41.250 [log] [xr] v1 1888x1792 bgra8unorm vp 0,0,4338,3478 desc {"arrayLayerCount":1,"aspect":"all","baseArrayLayer":1,"baseMipLevel":0,"dimension":"2d","usage":0}
+01:23:41.251 [log] [hb] tick 1 views 2
+01:23:41.252 [log] [xr] updateRenderState(depthNear,depthFar) — re-asserting layers
+01:23:41.252 [log] [hb] xr frame 1 submitted
+01:23:41.252 [log] [hb] tick 2 views 2
+01:23:41.253 [log] [hb] xr frame 2 submitted
+01:23:41.254 [log] [hb] tick 3 views 2
+01:23:41.254 [log] [hb] xr frame 3 submitted
+01:23:41.578 [log] [hb] tick 10 views 2
+01:23:41.579 [log] [hb] xr frame 10 submitted
+01:23:41.771 [log] [hb] tick 30 views 2
+01:23:41.772 [log] [hb] xr frame 30 submitted
+01:23:42.396 [log] [hb] tick 90 views 2
+01:23:42.399 [log] [hb] xr frame 90 submitted
+01:23:44.197 [log] [hb] xr frames flowing, 83.8 fps
+01:23:44.733 [log] [hb] tick 300 views 2
+01:23:44.734 [log] [hb] xr frame 300 submitted
+01:23:47.208 [log] [hb] xr frames flowing, 89.4 fps
+01:23:50.217 [log] [hb] xr frames flowing, 90.0 fps
+01:23:59.417 [log] [xr] visibility visible-blurred
+01:23:59.418 [log] [xr] sessionend
+01:23:59.419 [log] [xr] session end event
+01:30:55.285 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:30:55.307 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:31:02.894 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:31:02.913 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:31:16.126 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:31:16.144 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:31:56.348 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:31:56.369 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:32:15.255 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:32:15.275 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:32:15.276 [error] ReferenceError: FIELD_SIZE is not defined
+ReferenceError: FIELD_SIZE is not defined
+    at new Dunes (https://localhost:5199/Experience/World/Dunes.js?t=1786411935129:29:18)
+    at new World (https://localhost:5199/Experience/World/World.js?t=1786411935129:17:18)
+    at Experience.init (https://localhost:5199/Experience/Experience.js?t=1786411935129:94:18)
+    at async main (https://localhost:5199/script.js:183:3)
+01:32:30.429 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:32:30.449 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:32:41.406 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:32:41.425 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:33:04.961 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:33:04.982 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:33:21.593 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:33:21.612 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:33:27.127 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:33:27.147 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:33:28.263 [error] ReferenceError: SLOPE_GRADE is not defined
+ReferenceError: SLOPE_GRADE is not defined
+    at new Snowboard (https://localhost:5199/Experience/World/Snowboard.js?t=1786412007003:38:31)
+    at new World (https://localhost:5199/Experience/World/World.js?t=1786412007003:19:22)
+    at Experience.init (https://localhost:5199/Experience/Experience.js?t=1786412007003:94:18)
+    at async main (https://localhost:5199/script.js:183:3)
+01:33:33.851 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:33:33.872 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:33:56.225 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:33:56.246 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:34:18.703 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:34:18.722 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:34:27.729 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:34:27.748 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:34:34.391 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:34:34.411 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:34:41.642 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:34:41.661 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:34:54.500 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:34:54.519 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:34:59.128 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:34:59.146 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:35:06.715 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:35:06.735 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:35:13.651 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:35:13.671 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:35:18.591 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:35:18.612 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:35:25.331 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:35:25.352 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:35:35.285 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:35:35.304 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:35:46.659 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:35:46.678 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:35:55.854 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:35:55.872 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:36:02.677 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:36:02.696 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:36:09.053 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:36:09.072 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)
+01:36:30.425 [session] connected Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+01:36:30.453 [log] SkyLut solved: E_up=(1.28, 2.06, 2.92) bounce=(1.34, 1.36, 1.27)

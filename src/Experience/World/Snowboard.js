@@ -2,7 +2,8 @@ import * as THREE from "three";
 import { MeshStandardNodeMaterial, MeshBasicNodeMaterial } from "three/webgpu";
 import { mix, positionLocal, smoothstep, uv, vec3, vec4, float, length } from "three/tsl";
 import Experience from "../Experience.js";
-import { SLOPE_GRADE, surfaceY } from "./constants.js";
+import { FIELD_LIFT } from "./constants.js";
+import { terrainSurfaceY, terrainSurfaceNormal } from "../../terrain/terrainSurface.js";
 
 // Fully procedural snowboard, fingerboard scale (~30 cm), built along local
 // +X with nose/tail rocker. It lives hidden until an emitter (hand pinch or
@@ -31,11 +32,9 @@ export default class Snowboard {
     this._tipVec = new THREE.Vector3();
     this._xAxis = new THREE.Vector3(1, 0, 0);
     this._quat = new THREE.Quaternion();
-    // rotation taking flat ground onto the base slope
-    this._slopeQuat = new THREE.Quaternion().setFromUnitVectors(
-      new THREE.Vector3(0, 1, 0),
-      new THREE.Vector3(0, 1, SLOPE_GRADE).normalize()
-    );
+    this._up = new THREE.Vector3(0, 1, 0);
+    this._terrainN = new THREE.Vector3();
+    this._slopeQuat = new THREE.Quaternion();
   }
 
   _buildDeck() {
@@ -109,7 +108,8 @@ export default class Snowboard {
   }
 
   // Place the board spanning tip0 -> tip1 (nose at one fingertip, tail at
-  // the other); stretch a little to fill the gap between the fingers.
+  // the other). Scale is uniform from the fingertip span, so the giant's
+  // 4.5 m (world) board is still 7.6 physical centimetres between fingers.
   setPoseFromTips(tip0, tip1) {
     const mid = this._tipVec.copy(tip0).add(tip1).multiplyScalar(0.5);
     this.group.position.copy(mid);
@@ -119,44 +119,55 @@ export default class Snowboard {
       this._quat.setFromUnitVectors(this._xAxis, dir.normalize());
       this.group.quaternion.copy(this._quat);
     }
-    const stretch = THREE.MathUtils.clamp(span / BOARD_LENGTH, 0.7, 1.5);
-    this._targetScale = stretch;
+    this._targetScale = THREE.MathUtils.clamp(span / BOARD_LENGTH, 0.7, 80);
     this._applyScale();
     this._updateShadow();
   }
 
   // On-the-snow pose for the desktop mouse fallback: yaw + carve lean in
-  // the slope's tangent frame, then tilted onto the slope.
+  // the local terrain's tangent frame.
   setPoseFlat(x, z, yaw, lean = 0) {
-    this.group.position.set(x, surfaceY(x, z) + 0.012, z);
+    this.group.position.set(x, terrainSurfaceY(x, z) + FIELD_LIFT + 0.012, z);
+    terrainSurfaceNormal(x, z, this._terrainN);
+    this._slopeQuat.setFromUnitVectors(this._up, this._terrainN);
     this.group.quaternion
       .setFromEuler(new THREE.Euler(-lean * 0.35, yaw, 0))
       .premultiply(this._slopeQuat);
-    this._targetScale = 1;
+    // the desktop board is giant-sized too: 3.6 m over the 120 m field is
+    // the same proportion the 30 cm board had over the old 6 m one
+    this._targetScale = 12;
     this._applyScale();
     this._updateShadow();
   }
 
   _applyScale() {
     const pop = 1 - Math.pow(1 - this.popT, 3); // ease-out cubic
-    // stretch only affects the length; the pop-in scales everything
-    this.group.scale.set((this._targetScale ?? 1) * pop, pop, pop);
+    this.group.scale.setScalar((this._targetScale ?? 1) * pop);
   }
 
   _updateShadow() {
-    const base = surfaceY(this.group.position.x, this.group.position.z);
+    const s = this._targetScale ?? 1; // board scale doubles as the size unit
+    const base =
+      terrainSurfaceY(this.group.position.x, this.group.position.z) + FIELD_LIFT;
     const height = this.group.position.y - base;
-    this.shadow.visible = this.group.visible && height > -0.05 && height < 0.6;
+    this.shadow.visible =
+      this.group.visible && height > -0.05 * s && height < 0.6 * s;
     if (!this.shadow.visible) return;
-    this.shadow.position.set(this.group.position.x, base + 0.004, this.group.position.z);
-    // lie in the slope's tangent plane (a level disc would bury its uphill
-    // half), yawed with the board
+    this.shadow.position.set(
+      this.group.position.x,
+      base + 0.02 * s,
+      this.group.position.z
+    );
+    // lie in the terrain's tangent plane (a level disc would bury its
+    // uphill half), yawed with the board
+    terrainSurfaceNormal(this.group.position.x, this.group.position.z, this._terrainN);
+    this._slopeQuat.setFromUnitVectors(this._up, this._terrainN);
     const yaw = new THREE.Euler().setFromQuaternion(this.group.quaternion, "YXZ").y;
     this.shadow.quaternion
       .setFromEuler(new THREE.Euler(0, yaw, 0))
       .premultiply(this._slopeQuat);
-    const closeness = 1 - THREE.MathUtils.clamp(height / 0.6, 0, 1);
-    this.shadow.scale.setScalar(0.5 + closeness * 0.6);
+    const closeness = 1 - THREE.MathUtils.clamp(height / (0.6 * s), 0, 1);
+    this.shadow.scale.setScalar((0.5 + closeness * 0.6) * s);
   }
 
   show() {

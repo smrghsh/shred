@@ -8,10 +8,14 @@ import snowSimShaderCode from "./shaders/snowSim.wgsl?raw";
 // read A -> relax + splat -> write B, swap. `texture` always points at the
 // freshest state.
 
-export const FIELD_SIZE = 6; // meters per side, centered on the player
-export const FIELD_TEX = 1024; // texels per side (~6 mm/texel)
-export const MAX_DEPTH = 0.16; // meters — trench clamp ("packed base")
-export const MAX_BERM = 0.08;
+// The field covers a reach-sized patch of mountainside for the giant: 120 m
+// of world at 1/60 scale is a 2 m carving table. All depth/berm limits are
+// 20x the original 6 m-field tuning, so trenches read identically at the
+// giant's eye.
+export const FIELD_SIZE = 120; // meters per side, centered on FIELD_CENTER
+export const FIELD_TEX = 1024; // texels per side (~12 cm/texel)
+export const MAX_DEPTH = 3.2; // meters — trench clamp ("packed base")
+export const MAX_BERM = 1.6;
 export const MAX_BRUSHES = 16;
 
 const BRUSH_FLOATS = 12; // three vec4s

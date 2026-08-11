@@ -3,35 +3,19 @@ import { MeshBasicNodeMaterial } from "three/webgpu";
 import { Fn, floor, fract, dot, normalLocal, normalize, positionWorld, sin, smoothstep, vec2, vec3, vec4 } from "three/tsl";
 import Experience from "../Experience.js";
 import createSnowLighting from "../../sky/snowLighting.js";
-import { SKY } from "../../sky/SkyLut.js";
-import { terrainMacro } from "../../terrain/terrainMacro.js";
-import { SNOW_Y, SLOPE_GRADE, surfaceY } from "./constants.js";
-import { FIELD_SIZE } from "../../snow/SnowSim.js";
+import { terrainSurfaceY } from "../../terrain/terrainSurface.js";
 
-// The mountainside between the carvable patch and the raymarched far range:
-// snowflow_demo's terrainMacro landform (wind-anisotropic, derivative-damped
-// fBm) displacing a polar grid, baked once on the CPU. The whole grid rides
-// the base slope the carve field tilts with; beyond the field the flank
-// steepens uphill (-Z) toward the peak and eases downhill into the
-// fog-filled valley, with the dune landform arriving within a few metres of
-// the field edge so the grade is unmissable from the spawn.
-
-// Uphill flank: quadratic steepening from the spawn grade (0.2) to ~0.84
-// at the rim — the crest tops out around 400 m and owns the skyline (the
-// raymarched far range caps at ~13 degrees elevation, so no bake can put
-// peaks above it; the mesh has to be the mountain).
-const FLANK = 0.0004;
-// Downhill: the run eases toward a valley floor. The scale is chosen to
-// keep the 800 m rim above ~-35 m, so the far range across the valley
-// still plants its feet behind the mesh instead of floating on a strip of
-// bright LUT sky (the sky dome only draws the range above -0.05 elevation).
-const VALLEY = 220;
+// The mountainside: terrainSurface.js's landform (spawn-grade plane
+// steepening uphill into the peak flank, easing downhill into the valley,
+// snowflow's terrainMacro relief growing with altitude) displacing a polar
+// grid, baked once on the CPU. The carve field conforms to the exact same
+// function and floats a hair above this mesh, so the two agree everywhere.
 
 // dense enough that the crest silhouette at 800 m is drawn from ~25 m
 // triangles, not 60 m ones — the peaks live or die on their skyline
 const ANGULAR = 256;
 const RINGS = 120;
-const R_INNER = 2.0; // hole hidden under the opaque carve field
+const R_INNER = 2.0;
 const R_OUTER = 800;
 
 export default class Dunes {
@@ -39,9 +23,6 @@ export default class Dunes {
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.skyLut = this.experience.skyLut;
-
-    const windRad = (SKY.windDirection * Math.PI) / 180;
-    const half = FIELD_SIZE / 2;
 
     const positions = new Float32Array((RINGS + 1) * ANGULAR * 3);
     const indices = [];
@@ -55,33 +36,8 @@ export default class Dunes {
         const x = Math.cos(a) * r;
         const z = Math.sin(a) * r;
 
-        // planar (a hair below the carve field, hiding the seam) at the
-        // patch, then the landform arrives fast: hip-high drifts right off
-        // the field edge, the full +/-20 m terrainMacro within a hundred
-        // metres — snowflow spawns you on full-amplitude terrain, and
-        // holding it back to the far distance is what read as a flat plain
-        const blend = THREE.MathUtils.smoothstep(r, half * 1.3, 25);
-        const uphill = Math.max(0, -z);
-        const downhill = Math.max(0, z);
-        const shaped =
-          SNOW_Y +
-          SLOPE_GRADE * uphill +
-          FLANK * uphill * uphill -
-          (SLOPE_GRADE * downhill) / (1 + downhill / VALLEY);
-        let h =
-          THREE.MathUtils.lerp(surfaceY(x, z), shaped, blend) -
-          0.004 * (1 - blend);
-
-        // relief grows with altitude — the dune-scale landform down here,
-        // serrated alpine crests up on the flank — so the skyline reads as
-        // peaks rather than as the same dunes farther away
-        const alpine = 1 + Math.max(0, shaped - SNOW_Y) * 0.006;
-        const amp =
-          blend * (0.25 + 0.75 * THREE.MathUtils.smoothstep(r, 20, 110)) * alpine;
-        if (amp > 0) h += terrainMacro(x, z, windRad) * amp;
-
         positions[v * 3 + 0] = x;
-        positions[v * 3 + 1] = h;
+        positions[v * 3 + 1] = terrainSurfaceY(x, z);
         positions[v * 3 + 2] = z;
         v++;
       }
