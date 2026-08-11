@@ -6,6 +6,7 @@ import Renderer from "./Renderer.js";
 import World from "./World/World.js";
 import Hands from "../interaction/Hands.js";
 import MouseCarve from "../interaction/MouseCarve.js";
+import GrabLocomotion from "../interaction/GrabLocomotion.js";
 import SkyLut from "../sky/SkyLut.js";
 import sources from "./sources.js";
 import { MAX_BRUSHES } from "../snow/SnowSim.js";
@@ -115,6 +116,7 @@ export default class Experience extends EventEmitter {
 
     this.hands = new Hands();
     this.mouseCarve = new MouseCarve();
+    this.grabLocomotion = new GrabLocomotion();
 
     // --- the giant: scale and place the rig when an XR session starts ---
     // The rig stands partway up the flank; at 60x, the carve field uphill
@@ -129,9 +131,14 @@ export default class Experience extends EventEmitter {
         RIG_XZ.z
       );
       this.cameraGroup.scale.setScalar(GIANT_SCALE);
-      // near/far in world units: 2 m world is ~3 physical centimetres
-      this.camera.instance.near = 2;
-      this.camera.instance.far = 20000;
+      // The XR session's depthNear/depthFar are REFERENCE-SPACE units —
+      // physical metres, regardless of the rig scale (which is a
+      // content-side trick the OS never sees). Setting these in world
+      // units put the near plane 2 physical metres out, which clipped the
+      // hands and the snow table into a head-locked hole. far: 300
+      // physical metres = 18 km of world, past everything.
+      this.camera.instance.near = 0.1;
+      this.camera.instance.far = 300;
       this.camera.instance.updateProjectionMatrix();
     });
     xr.addEventListener("sessionend", () => {
@@ -165,6 +172,7 @@ export default class Experience extends EventEmitter {
 
     // --- interaction: emitters queue brush stamps for this frame ---
     this.hands.update(dt);
+    this.grabLocomotion.update();
     this.mouseCarve.update(dt);
 
     // --- advance the snow state (relax + splat), then hand off to render ---

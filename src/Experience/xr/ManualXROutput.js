@@ -139,6 +139,17 @@ export default class ManualXROutput {
     xr.addEventListener("sessionstart", () => {
       window.shredLog?.("[xr] sessionstart");
       const session = xr.getSession();
+      window.shredLog?.(
+        `[xr] enabledFeatures: ${session?.enabledFeatures?.join(", ") ?? "?"}`
+      );
+      const logSources = () => {
+        const s = [...(session?.inputSources ?? [])].map(
+          (i) => `${i.handedness}:${i.hand ? "hand" : i.targetRayMode}`
+        );
+        window.shredLog?.(`[xr] inputSources: ${s.join(" ") || "none"}`);
+      };
+      logSources();
+      session?.addEventListener("inputsourceschange", logSources);
       session?.addEventListener("visibilitychange", () =>
         window.shredLog?.(`[xr] visibility ${session.visibilityState}`)
       );

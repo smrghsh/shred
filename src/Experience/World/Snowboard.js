@@ -124,6 +124,16 @@ export default class Snowboard {
     this._updateShadow();
   }
 
+  // The tech deck: pose computed by Hands from the finger geometry —
+  // fixed physical size, riding flat under the fingertips.
+  setPoseTechDeck(pos, quat, scale) {
+    this.group.position.copy(pos);
+    this.group.quaternion.copy(quat);
+    this._targetScale = scale;
+    this._applyScale();
+    this._updateShadow();
+  }
+
   // On-the-snow pose for the desktop mouse fallback: yaw + carve lean in
   // the local terrain's tangent frame.
   setPoseFlat(x, z, yaw, lean = 0) {
