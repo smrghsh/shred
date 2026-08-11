@@ -32,7 +32,8 @@ export function terrainBaseY(x, z) {
 export function terrainSurfaceY(x, z) {
   const base = terrainBaseY(x, z);
   const r = Math.hypot(x, z);
-  const alpine = 1 + Math.max(0, base - SNOW_Y) * 0.006;
+  // capped so the far uphill reaches don't explode into noise spikes
+  const alpine = 1 + Math.min(2.0, Math.max(0, base - SNOW_Y) * 0.006);
   const t = Math.min(1, Math.max(0, (r - 20) / 90));
   const amp = (0.25 + 0.75 * t * t * (3 - 2 * t)) * alpine;
   return base + terrainMacro(x, z, WIND_RAD) * amp;

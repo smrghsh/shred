@@ -4,6 +4,7 @@ import { Fn, floor, fract, dot, normalLocal, normalize, positionWorld, sin, smoo
 import Experience from "../Experience.js";
 import createSnowLighting from "../../sky/snowLighting.js";
 import { terrainSurfaceY } from "../../terrain/terrainSurface.js";
+import { FIELD_CENTER } from "./constants.js";
 
 // The mountainside: terrainSurface.js's landform (spawn-grade plane
 // steepening uphill into the peak flank, easing downhill into the valley,
@@ -11,11 +12,14 @@ import { terrainSurfaceY } from "../../terrain/terrainSurface.js";
 // grid, baked once on the CPU. The carve field conforms to the exact same
 // function and floats a hair above this mesh, so the two agree everywhere.
 
-// dense enough that the crest silhouette at 800 m is drawn from ~25 m
-// triangles, not 60 m ones — the peaks live or die on their skyline
-const ANGULAR = 256;
-const RINGS = 120;
-const R_INNER = 2.0;
+// The polar grid is centered on the CARVE FIELD, not the world origin: the
+// giant stands right there, and the exponential ring spacing then puts
+// sub-metre triangles at their feet (where centimetre-scale facets were
+// reading as clipping against the exact carve field) and ~20 m triangles
+// out at the crest, which only has to hold a skyline.
+const ANGULAR = 512;
+const RINGS = 160;
+const R_INNER = 0.5; // hidden under the carve field
 const R_OUTER = 800;
 
 export default class Dunes {
@@ -33,8 +37,8 @@ export default class Dunes {
       const r = R_INNER * Math.pow(growth, i);
       for (let j = 0; j < ANGULAR; j++) {
         const a = (j / ANGULAR) * Math.PI * 2;
-        const x = Math.cos(a) * r;
-        const z = Math.sin(a) * r;
+        const x = FIELD_CENTER.x + Math.cos(a) * r;
+        const z = FIELD_CENTER.z + Math.sin(a) * r;
 
         positions[v * 3 + 0] = x;
         positions[v * 3 + 1] = terrainSurfaceY(x, z);
