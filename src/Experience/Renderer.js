@@ -44,25 +44,68 @@ export default class Renderer {
     // XR render target to the actual color texture before three
     // (re)builds the depth attachment for the frame. Remove when three's
     // WebGPU XR path tracks sub-image dimensions itself.
+    // Replaces three's _getWebGPUViewData wholesale. visionOS deviates from
+    // the WebXR-WebGPU spec draft in ways r186dev doesn't handle:
+    // the projection layer reports textureWidth/Height of 0 (three builds a
+    // 0x0 render target from it), and the sub-image viewport is the LOGICAL
+    // foveated resolution — larger than the physical texture, which
+    // invalidates any pass that sets it (WebKit then only reports the
+    // downstream "encoder state is 'Locked'" when finish() runs). So:
+    // clamp viewports onto the physical texture, resize the render target
+    // to the real sub-image, and dump the full per-view geometry to the
+    // on-page log once, so device behavior is never a guess again.
     const xr = this.instance.xr;
-    const getViewData = xr._getWebGPUViewData.bind(xr);
     let loggedXR = false;
     xr._getWebGPUViewData = (views) => {
-      const viewData = getViewData(views);
+      const binding = xr.getWebGPUBinding();
+      const viewData = { colorTexture: null, viewDescriptors: [], viewports: [] };
+      const details = [];
+
+      for (let i = 0; i < views.length; i++) {
+        const sub = binding.getViewSubImage(xr._glProjLayer, views[i]);
+        const c = sub.colorTexture;
+        const d = sub.depthStencilTexture;
+        const vp = sub.viewport;
+        const desc = sub.getViewDescriptor ? sub.getViewDescriptor() : null;
+
+        if (!loggedXR) {
+          details.push(
+            `[xr] v${i} c ${c.width}x${c.height}x${c.depthOrArrayLayers} ${c.format}` +
+              `${i > 0 ? ` sameTex:${c === viewData.colorTexture}` : ""}` +
+              ` d ${d ? `${d.width}x${d.height}x${d.depthOrArrayLayers} ${d.format}` : "none"}` +
+              ` vp ${vp.x},${vp.y},${vp.width},${vp.height}` +
+              ` desc ${desc ? JSON.stringify(desc) : "none"}`
+          );
+        }
+
+        if (viewData.colorTexture === null) viewData.colorTexture = c;
+
+        // clamp the logical (foveated) viewport onto the physical texture;
+        // a no-op on platforms whose viewports already fit
+        const overX = vp.x + vp.width;
+        const overY = vp.y + vp.height;
+        const sx = overX > c.width ? c.width / overX : 1;
+        const sy = overY > c.height ? c.height / overY : 1;
+        viewData.viewports.push({
+          x: Math.floor(vp.x * sx),
+          y: Math.floor(vp.y * sy),
+          width: Math.floor(vp.width * sx),
+          height: Math.floor(vp.height * sy),
+        });
+
+        if (desc) viewData.viewDescriptors.push(desc);
+      }
+
       const tex = viewData.colorTexture;
       const rt = xr._xrRenderTarget;
-      if (!loggedXR && tex && rt) {
-        // one-shot geometry dump into the on-page error log — the ground
-        // truth for diagnosing XR attachment mismatches on device
+      if (!loggedXR && tex) {
         loggedXR = true;
-        const vp = viewData.viewports[0];
-        window.shredLog?.(
+        details.push(
           `[xr] layer ${xr._glProjLayer?.textureWidth}x${xr._glProjLayer?.textureHeight}` +
-            ` subimage ${tex.width}x${tex.height}x${tex.depthOrArrayLayers} ${tex.format}` +
-            ` views ${views.length} descs ${viewData.viewDescriptors.length}` +
-            ` vp ${vp?.x},${vp?.y} ${vp?.width}x${vp?.height}` +
-            ` rt ${rt.width}x${rt.height}x${rt.depth} samples ${this.instance.samples}`
+            ` scale ${binding.nativeProjectionScaleFactor?.toFixed?.(3)}` +
+            ` rt ${rt?.width}x${rt?.height}x${rt?.depth} samples ${this.instance.samples}`
         );
+        for (const line of details) window.shredLog?.(line);
       }
       if (
         tex &&
